@@ -7,6 +7,11 @@
 		<div ng-controller="showFiles">
 
 			<button ng-hide="isAutherized" ng-click="handleAuthClick()">My Authenticate</button>  
+			<!-- <button ng-hide="!isAutherized" ng-click="uploadFile()">Upload</button> -->
+			<form action="/uploads" ng-hide="!isAutherized" ng-upload="uploadFile(content)">
+				<input type="file" name="avatar"></input>
+
+			</form>
 
 		</div>
 	</div>
@@ -15,6 +20,7 @@
 <script src="https://apis.google.com/js/client.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-google-gapi/dist/angular-google-gapi.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -22,5 +28,8 @@
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/uploadToDrive/upload.js"></script>
+<script src="bower_components/ngUpload/ng-upload.js"></script>
 <script src="scripts/app.js"></script>
+
 </html>
