@@ -1,20 +1,30 @@
 <html>
 <head>
+	<style>
+	.dropZone {
+			width: 250px;
+			height: 45px;
+			border: 1px solid #ccc;
+			text-align: center;
+			padding: 30px;
+			margin: 20px;
+			font-family: Arial;
+		}
+	</style>
 </head>
 <body >
 
 	<div ng-app="dashboardApp">
 		<div ng-controller="showFiles">
 
-			<button ng-hide="isAutherized" ng-click="handleAuthClick()">My Authenticate</button>  
-			<!-- <button ng-hide="!isAutherized" ng-click="uploadFile()">Upload</button> -->
-			<form action="/uploads" ng-hide="!isAutherized" ng-upload="uploadFile(content)">
-				<input type="file" name="avatar"></input>
-
-			</form>
-
+			<button ng-hide="isAutherized" ng-click="handleAuthClick()">My Authenticate</button>	
+			<div id="dropzone" ng-hide="!isAutherized" class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
+			file="image" file-name="imageFileName" data-max-file-size="3">
+			<span>Drop Image Here</span>
 		</div>
+
 	</div>
+</div>
 </body>
 
 <script src="https://apis.google.com/js/client.js"></script>
