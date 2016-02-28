@@ -1,7 +1,7 @@
 <html>
 <head>
 	<style>
-	.dropZone {
+		.dropZone {
 			width: 250px;
 			height: 45px;
 			border: 1px solid #ccc;
@@ -16,11 +16,21 @@
 
 	<div ng-app="dashboardApp">
 		<div ng-controller="showFiles">
+			<div>
 
-			<button ng-hide="isAutherized" ng-click="handleAuthClick()">My Authenticate</button>	
-			<div id="dropzone" ng-hide="!isAutherized" class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
-			file="image" file-name="imageFileName" data-max-file-size="3">
-			<span>Drop Image Here</span>
+				<button ng-hide="isAutherized" ng-click="handleAuthClick()">Authenticate</button>	
+				<div id="dropzone" ng-hide="!isAutherized" class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
+				file="image" file-name="imageFileName" data-max-file-size="3">
+				<span>Drop Image Here</span>
+
+
+			</div>
+			
+			<div ng-repeat="file in files">
+				<ul>
+				<li>{{file.name}}</li>
+				</ul>
+			</div>
 		</div>
 
 	</div>

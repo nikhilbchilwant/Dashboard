@@ -8,14 +8,17 @@
  * Main module of the application.
  */
  var dashboardModule = angular.module('dashboardApp', ['ngUpload'/*'angular-google-gapi'*/]);
+
+ dashboardModule.constant('CLIENT_ID', 
+ 	'1094966308802-ksdjf0f4h4gblprr663ie3a8hqmcei3o.apps.googleusercontent.com');
+ dashboardModule.constant('SCOPES', ['https://www.googleapis.com/auth/drive.file']);
+
  var accessToken = null;
 
- dashboardModule.controller('showFiles', function($scope/*, gapi*/){
- 	var CLIENT_ID = '1094966308802-ksdjf0f4h4gblprr663ie3a8hqmcei3o.apps.googleusercontent.com';
- 	var SCOPES = ['https://www.googleapis.com/auth/drive.file'];
+ dashboardModule.controller('showFiles', function($scope, CLIENT_ID, SCOPES){
+ 	
  	$scope.isAutherized = false;
  	
-
  	$scope.handleAuthClick = function() {
 
  		gapi.auth.authorize(
@@ -62,6 +65,8 @@
 	   	request.execute(function(resp) {
 
 	   		var files = resp.files;
+	   		$scope.files = resp.files;
+	   		$scope.$apply();
 	   		if (files && files.length > 0) {
 	   			for (var i = 0; i < files.length; i++) {
 	   				var file = files[i];
@@ -82,12 +87,13 @@
  		file: content,
  		token: accessToken,
  		onComplete: function(data) {
+ 			
  		}
  	});
  	uploader.upload();		   	
  };
 
- dashboardModule.directive('fileDropzone', function() {
+ angular.module('dashboardApp').directive('fileDropzone', function() {
  	return {
  		restrict: 'A',
  		scope: {
