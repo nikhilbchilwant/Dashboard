@@ -21,7 +21,7 @@
 				<button ng-hide="isAutherized" ng-click="handleAuthClick()">Authenticate</button>	
 				<div id="dropzone" ng-hide="!isAutherized" class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
 				file="image" file-name="imageFileName" data-max-file-size="3">
-				<span>Drop Image Here</span>
+				<span>Drop File Here</span>
 
 
 			</div>
@@ -50,6 +50,9 @@
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/uploadToDrive/upload.js"></script>
 <script src="bower_components/ngUpload/ng-upload.js"></script>
+
+<script src="scripts/services/driveUtil.js"></script>
 <script src="scripts/app.js"></script>
+<script type="text/javascript" src="scripts/directives/fileDropzone.js"></script>
 
 </html>
