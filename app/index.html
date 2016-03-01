@@ -18,7 +18,7 @@
 		<div ng-controller="showFiles">
 			<div>
 
-				<button ng-hide="isAutherized" ng-click="handleAuthClick()">Authenticate</button>	
+				<button type="button" class="btn btn-default btn-sm" ng-hide="isAutherized" ng-click="handleAuthClick()">Authenticate</button>	
 				<div id="dropzone" ng-hide="!isAutherized" class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
 				file="image" file-name="imageFileName" data-max-file-size="3">
 				<span>Drop File Here</span>
@@ -27,9 +27,9 @@
 			</div>
 			
 			<div ng-repeat="file in files">
-				<ul>
-				<li>{{file.name}}</li>
-				</ul>
+				<!-- <ul class="list-group"> -->
+					<a  ng-hide="!isAutherized" href="#" class="list-group-item">{{file.name}}</a>
+				<!-- </ul> -->
 			</div>
 		</div>
 
@@ -48,9 +48,10 @@
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
+<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 <script src="bower_components/uploadToDrive/upload.js"></script>
 <script src="bower_components/ngUpload/ng-upload.js"></script>
-
 <script src="scripts/services/driveUtil.js"></script>
 <script src="scripts/app.js"></script>
 <script type="text/javascript" src="scripts/directives/fileDropzone.js"></script>
