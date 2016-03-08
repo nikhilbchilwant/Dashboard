@@ -1,16 +1,5 @@
 <html>
-<head>
-	<style>
-		.dropZone {
-			width: 250px;
-			height: 45px;
-			border: 1px solid #ccc;
-			text-align: center;
-			padding: 30px;
-			margin: 20px;
-			font-family: Arial;
-		}
-	</style>
+<head>	
 </head>
 <body >
 
@@ -26,10 +15,17 @@
 
 			</div>
 			
-			<div ng-repeat="file in files">
-				<!-- <ul class="list-group"> -->
-					<a  ng-hide="!isAutherized" href="#" class="list-group-item">{{file.name}}</a>
-				<!-- </ul> -->
+			<div ng-repeat="file in files" ng-init="file.isCollapsed=true">
+				<ul class="list-group">
+					<div class="list-group-item">{{file.name}}
+						<button type="button" class="btn btn-default btn-sm " ng-click="Download()">Download</button>
+						<button type="button" class="btn btn-default btn-sm" ng-click="file.isCollapsed=!file.isCollapsed">Details</button>
+					</div>
+				</ul>
+
+				<div uib-collapse="file.isCollapsed" expanding="expanding(file)">
+					<div class="well well-lg">{{file.title}} : {{file.mimeType}}</div>
+				</div>
 			</div>
 		</div>
 
@@ -50,6 +46,7 @@
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="./styles/main.css">
 <script src="bower_components/uploadToDrive/upload.js"></script>
 <script src="bower_components/ngUpload/ng-upload.js"></script>
 <script src="scripts/services/driveUtil.js"></script>

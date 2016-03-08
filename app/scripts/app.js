@@ -7,7 +7,7 @@
  *
  * Main module of the application.
  */
- var dashboardModule = angular.module('dashboardApp', ['ngUpload']);
+ var dashboardModule = angular.module('dashboardApp', ['ngUpload','ngAnimate', 'ui.bootstrap']);
 
  dashboardModule.constant('CLIENT_ID', 
  	'1094966308802-ksdjf0f4h4gblprr663ie3a8hqmcei3o.apps.googleusercontent.com');
@@ -19,6 +19,7 @@
  	
  	$scope.isAutherized = false;
  	
+
  	$scope.handleAuthClick = function() {
 
  		gapi.auth.authorize(
@@ -70,6 +71,8 @@
 	   		if (files && files.length > 0) {
 	   			for (var i = 0; i < files.length; i++) {
 	   				var file = files[i];
+
+	   				// file.isCollapsed=true;
 	   				// console.log(file.name + ' (' + file.id + ')');
 	   			}
 	   		} else {
@@ -77,4 +80,23 @@
 	   		}
 	   	});
 	   }
+
+	   $scope.expanding = function(file){		
+
+	   	console.log('expanding');
+	   	var request = gapi.client.drive.files.get({
+	   		'fileId': file.id
+	   	});
+	   	request.execute(function(resp) {
+	   		file.title=resp.title;
+	   		file.description=resp.description;
+	   		file.mimeType=resp.mimeType;
+	   		/*console.log('Title: ' + resp.title);
+	   		console.log('Description: ' + resp.description);
+	   		console.log('MIME type: ' + resp.mimeType);*/
+	   	});
+	   }
+
+
+
 	});
