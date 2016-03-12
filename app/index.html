@@ -11,7 +11,7 @@
 				<div id="dropzone" ng-hide="!isAutherized" class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
 				file="image" file-name="imageFileName" data-max-file-size="3">
 				<span>Drop File Here</span>
-
+				</div>
 
 			</div>
 			
@@ -24,7 +24,7 @@
 				</ul>
 
 				<div uib-collapse="file.isCollapsed" expanding="expanding(file)">
-					<div class="well well-lg">{{file.title}} : {{file.mimeType}}</div>
+					<div class="well well-lg">MIME Type : {{file.mimeType}}</div>
 				</div>
 			</div>
 		</div>
@@ -49,8 +49,8 @@
 <link rel="stylesheet" type="text/css" href="./styles/main.css">
 <script src="bower_components/uploadToDrive/upload.js"></script>
 <script src="bower_components/ngUpload/ng-upload.js"></script>
-<script src="scripts/services/driveUtil.js"></script>
 <script src="scripts/app.js"></script>
+<script src="scripts/services/driveUtil.js"></script>
 <script type="text/javascript" src="scripts/directives/fileDropzone.js"></script>
 
 </html>

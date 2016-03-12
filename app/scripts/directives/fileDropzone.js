@@ -4,10 +4,7 @@
 angular.module('dashboardApp').directive('fileDropzone', function() {
  	return {
  		restrict: 'A',
- 		scope: {
- 			file: '=',
- 			fileName: '='
- 		},
+ 		scope: false,
  		link: function(scope, element, attrs) {
       	// console.log('triggered');
       	var isTypeValid, processDragOverOrEnter, validMimeTypes;
@@ -33,12 +30,14 @@ angular.module('dashboardApp').directive('fileDropzone', function() {
 		element.bind('dragover', processDragOverOrEnter);
 		element.bind('dragenter', processDragOverOrEnter);
 		// $scope.$apply();
-		var uploadFile = function(content){
+		var uploadFile = function(content, scope){
 			var uploader = new MediaUploader({
 				file: content,
 				token: accessToken,
 				onComplete: function(data) {
 					console.log('upload complete');
+					scope.listFiles();
+					
 				},
 				onProgress: function(data){					
 					var percentComplete = data.loaded / data.total;
@@ -70,7 +69,8 @@ angular.module('dashboardApp').directive('fileDropzone', function() {
 			type = file.type;
 			size = file.size;
 			reader.readAsDataURL(file);
-			uploadFile(file);
+			uploadFile(file, scope);
+			
 			return false;
 		});
 	}

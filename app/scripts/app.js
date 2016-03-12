@@ -7,7 +7,8 @@
  *
  * Main module of the application.
  */
- var dashboardModule = angular.module('dashboardApp', ['ngUpload','ngAnimate', 'ui.bootstrap']);
+ var dashboardModule = angular.module('dashboardApp', ['ngUpload','ngAnimate', 'ui.bootstrap',
+  'angular-google-gapi']);
 
  dashboardModule.constant('CLIENT_ID', 
  	'1094966308802-ksdjf0f4h4gblprr663ie3a8hqmcei3o.apps.googleusercontent.com');
@@ -15,10 +16,12 @@
 
  var accessToken = null;
 
- dashboardModule.controller('showFiles', function($scope, CLIENT_ID, SCOPES){
+ dashboardModule.controller('showFiles', ['$scope','driveUtil', function($scope, driveUtil){
  	
  	$scope.isAutherized = false;
  	
+ 	var SCOPES ='https://www.googleapis.com/auth/drive.file';
+ 	var CLIENT_ID ='1094966308802-ksdjf0f4h4gblprr663ie3a8hqmcei3o.apps.googleusercontent.com';
 
  	$scope.handleAuthClick = function() {
 
@@ -51,13 +54,13 @@
 	   * Load Drive API client library.
 	   */
 	   function loadDriveApi() {
-	   	gapi.client.load('drive', 'v3', listFiles);
+	   	gapi.client.load('drive', 'v3', driveUtil.listFiles);
 	   }
 
 	  /**
 	   * Print files.
 	   */
-	   function listFiles() {
+	   $scope.listFiles = function () {
 	   	var request = gapi.client.drive.files.list({
 	   		'pageSize': 10,
 	   		'fields': 'nextPageToken, files(id, name)'
@@ -91,6 +94,7 @@
 	   		file.title=resp.title;
 	   		file.description=resp.description;
 	   		file.mimeType=resp.mimeType;
+
 	   		/*console.log('Title: ' + resp.title);
 	   		console.log('Description: ' + resp.description);
 	   		console.log('MIME type: ' + resp.mimeType);*/
@@ -99,4 +103,4 @@
 
 
 
-	});
+	}]);
