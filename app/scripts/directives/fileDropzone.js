@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('dashboardApp').directive('fileDropzone', function() {
+angular.module('dashboardApp').directive('fileDropzone', ['driveUtil',function(driveUtil) {
  	return {
  		restrict: 'A',
  		scope: false,
@@ -36,7 +36,7 @@ angular.module('dashboardApp').directive('fileDropzone', function() {
 				token: accessToken,
 				onComplete: function(data) {
 					console.log('upload complete');
-					scope.listFiles();
+					driveUtil.listFiles();
 					
 				},
 				onProgress: function(data){					
@@ -75,4 +75,4 @@ angular.module('dashboardApp').directive('fileDropzone', function() {
 		});
 	}
 };
-});
+}]);

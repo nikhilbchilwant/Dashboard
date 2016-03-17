@@ -15,15 +15,15 @@
 
 			</div>
 			
-			<div ng-repeat="file in files" ng-init="file.isCollapsed=true">
+			<div class='fileList' ng-repeat="file in files" ng-init="file.isCollapsed=true">
 				<ul class="list-group">
-					<div class="list-group-item">{{file.name}}
-						<button type="button" class="btn btn-default btn-sm " ng-click="Download()">Download</button>
+					<div class="list-group-item">{{file.title}}
+						<button type="button" class="btn btn-default btn-sm " ng-click="Download(file)">Download</button>
 						<button type="button" class="btn btn-default btn-sm" ng-click="file.isCollapsed=!file.isCollapsed">Details</button>
 					</div>
 				</ul>
 
-				<div uib-collapse="file.isCollapsed" expanding="expanding(file)">
+				<div uib-collapse="file.isCollapsed">
 					<div class="well well-lg">MIME Type : {{file.mimeType}}</div>
 				</div>
 			</div>
