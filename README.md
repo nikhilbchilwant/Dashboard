@@ -1,4 +1,4 @@
-Powered by UI-Bootstrap 
+Powered by UI-Bootstrap (https://angular-ui.github.io/bootstrap/)
 # dashboard
 
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
