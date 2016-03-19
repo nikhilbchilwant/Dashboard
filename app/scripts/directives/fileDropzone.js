@@ -29,7 +29,7 @@ angular.module('dashboardApp').directive('fileDropzone', ['driveUtil',function(d
 		};
 		element.bind('dragover', processDragOverOrEnter);
 		element.bind('dragenter', processDragOverOrEnter);
-		// $scope.$apply();
+		// scope.$apply();
 		var uploadFile = function(content, scope){
 			var uploader = new MediaUploader({
 				file: content,
@@ -40,8 +40,11 @@ angular.module('dashboardApp').directive('fileDropzone', ['driveUtil',function(d
 					
 				},
 				onProgress: function(data){					
-					var percentComplete = data.loaded / data.total;
-					console.log('percentComplete='+percentComplete);
+					var percentComplete = data.loaded *100/ data.total;
+					
+					scope.value = Math.round(percentComplete);
+					scope.$apply();
+					
 				}
 			});
 			uploader.upload();		   	

@@ -6,30 +6,8 @@
 	<div ng-app="dashboardApp">
 		<div ng-controller="showFiles">
 			<div>
-
-				<button type="button" class="btn btn-default btn-sm" ng-hide="isAutherized" ng-click="handleAuthClick()">Authenticate</button>	
-				<div id="dropzone" ng-hide="!isAutherized" class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
-				file="image" file-name="imageFileName" data-max-file-size="3">
-				<span>Drop File Here</span>
-				</div>
-
+				<div ng-controller="showFiles" ng-view></div>
 			</div>
-			
-			<div class='fileList' ng-repeat="file in files" ng-init="file.isCollapsed=true">
-				<ul class="list-group">
-					<div class="list-group-item">{{file.title}}
-						<button type="button" class="btn btn-default btn-sm " ng-click="Download(file)">Download</button>
-						<button type="button" class="btn btn-default btn-sm" ng-click="file.isCollapsed=!file.isCollapsed">Details</button>
-					</div>
-				</ul>
-
-				<div uib-collapse="file.isCollapsed">
-					<div class="well well-lg">MIME Type : {{file.mimeType}}</div>
-				</div>
-			</div>
-		</div>
-
-	</div>
 </div>
 </body>
 
